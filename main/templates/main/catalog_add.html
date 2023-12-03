@@ -1,0 +1,14 @@
+{% extends 'layout/basic.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Добавление курса{% endblock %}
+
+{% block content %}
+<h2>Добавление курса</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% bootstrap_button 'Добавить' %}
+</form>
+{% endblock %}

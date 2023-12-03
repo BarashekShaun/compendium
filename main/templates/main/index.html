@@ -1,0 +1,35 @@
+{% extends 'layout/basic.html' %}
+
+{% load thumbnail %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% if user.is_authenticated %}
+{% block title %}{{ user.username }} последние уроки{% endblock %}
+
+{% block content %}
+{% for les in lesson %}
+<div class="card">
+    {% url 'main:lesson_detail' catalog_pk=les.catalog.pk pk=les.pk as url %}
+    <div class="row p-3">
+        <a class="col-md-1" href="{{ url }}{{ all }}">
+            {% if les.image %}
+            <img class="img-fluid"
+                src="{% thumbnail les.image 'default' %}">
+            {% else %}
+            <img class="img-fluid" src="{% static 'main/empty.png' %}">
+            {% endif %}
+        </a>
+        <div class="col-md-10 card-body">
+            <h3 class="card-title"><a href="{{ url }}{{ all }}">
+            {{ les.catalog.name }}: {{ les.title }}</a></h3>
+
+            <p class="card-text fw-bold">{{ les.date }}</p>
+            <p class="card-text text-end fst-italic">{{ les.created_at }}</p>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
+{% endif %}

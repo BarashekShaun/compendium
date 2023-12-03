@@ -1,0 +1,14 @@
+{% extends 'layout/basic.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Удаление {{ lesson.title }}{% endblock %}
+
+{% block content %}
+<h2>Удалить {{ lesson.title }}?</h2>
+<p>Это действие удалит конспект безвозвратно.</p>
+<form method="post"/>
+    {% csrf_token %}
+    {% bootstrap_button 'Удалить' button_class='btn-danger' %}
+</form>
+{% endblock %}

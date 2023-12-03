@@ -1,0 +1,26 @@
+{% extends 'layout/basic.html' %}
+
+{% load thumbnail %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+<form class="row row-cols-md-auto justify-content-end">
+    <div class="d-grid gap-2">
+        <a class="btn btn-primary" href="{% url 'main:catalog_add' %}" role="button">
+            Добавить курс</a>
+    </div>
+</form>
+<div class="row">
+    <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            {% for catalog in catalogs %}
+            {% url 'main:catalog_lesson' pk=catalog.pk as url %}
+            <a href="{{ url }}{{ all }}" class="list-group-item list-group-item" aria-current="true">
+            <h3 class="mb-1">{{ catalog.name }}</h3></a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

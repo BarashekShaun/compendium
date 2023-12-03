@@ -1,0 +1,44 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}{{ lesson.title }} - {{ lesson.catalog.name }}{% endblock %}
+
+{% block content %}
+<div class="row mt-3">
+    {% if lesson.image %}
+    <div class="col-md-auto">
+        <img src="{{ lesson.image.url }}" class="main-image">
+    </div>
+    {% endif %}
+    <div>
+        <p class="button">
+        <a class="btn btn-secondary" href="{% url 'main:lesson_edit' pk=lesson.pk %}">Изменить</a>
+        <a class="btn btn-danger" href="{% url 'main:lesson_delete' pk=lesson.pk %}">Удалить</a>
+        </p>
+    </div>
+    <div class="col">
+        <h2>{{ lesson.title }}</h2>
+        <p>{{ lesson.description }}</p>
+        <p class="fw-bold">{{ lesson.date }}</p>
+        <p class="text-end fst-italic">Добавлено {{ lesson.created_at }}</p>
+    </div>
+</div>
+{% if adill %}
+<div class="d-flex justify-content-between flex-wrap mt-5">
+    {% for il in adill %}
+    <div class="d-flex justify-content-center align-items-center">
+        <img class="additional-image" src="{{ il.image.url }}">
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<form class="row row-cols-md-auto justify-content">
+<div>
+    <p class="button">
+    <a class="btn btn-light" href="{% url 'main:catalog_lesson' pk=lesson.catalog.pk %}{{ all }}">
+    Назад</a>
+    </p>
+</div>
+</form>
+
+
+{% endblock %}
