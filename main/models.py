@@ -19,15 +19,13 @@ class AdvUser(AbstractUser):
 
 
 class Catalog(models.Model):
-    name = models.CharField(max_length=20, unique=True, verbose_name='Название')
+    name = models.CharField(max_length=40, unique=True, verbose_name='Название')
     order = models.SmallIntegerField(default=0, db_index=True, verbose_name='Порядок')
 
 
 class SubCatalog(Catalog):
     author = models.ForeignKey(AdvUser, on_delete=models.CASCADE,
                                verbose_name='Автор')
-    viewers = models.ManyToManyField(AdvUser,
-                                verbose_name='Добавленные пользователи', related_name='Viewers', blank=True)
 
     def __str__(self):
         return '%s' % (self.name)

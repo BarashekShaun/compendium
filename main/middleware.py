@@ -19,3 +19,4 @@ def custom_context_processor(request):
             else:
                 context['all'] = '?page=' + page
     return context
+

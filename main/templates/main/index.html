@@ -8,6 +8,7 @@
 {% block title %}{{ user.username }} последние уроки{% endblock %}
 
 {% block content %}
+
 {% for les in lesson %}
 <div class="card">
     {% url 'main:lesson_detail' catalog_pk=les.catalog.pk pk=les.pk as url %}
@@ -25,7 +26,7 @@
             {{ les.catalog.name }}: {{ les.title }}</a></h3>
 
             <p class="card-text fw-bold">{{ les.date }}</p>
-            <p class="card-text text-end fst-italic">{{ les.created_at }}</p>
+            <p class="card-text text-end">{{ les.created_at }}</p>
         </div>
     </div>
 </div>

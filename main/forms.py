@@ -53,7 +53,7 @@ class ProfileEditForm(forms.ModelForm):
 class SubCatalogForm(forms.ModelForm):
     class Meta:
         model = SubCatalog
-        fields = ('name', 'author', 'viewers')
+        fields = ('name', 'author')
         widgets = {'author': forms.HiddenInput}
 
 

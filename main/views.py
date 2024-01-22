@@ -197,6 +197,9 @@ def profile_lesson_edit(request, pk):
                 formset.save()
                 messages.add_message(request, messages.SUCCESS, 'Конспект обновлен')
                 return redirect('main:index')
+            else:
+                messages.add_message(request, messages.SUCCESS, 'Конспект обновлен')
+                return redirect('main:index')
     else:
         form = LessonForm(instance=lesson)
         formset = AIFormSet(instance=lesson)
